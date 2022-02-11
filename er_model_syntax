@@ -1,0 +1,55 @@
+[Shops](sid*, name);
+[Products](pid*, name, description);
+[Manufacturers](mid*, name, country);
+[Category](cid*, name);
+[Users](uid*, name, address);
+[Coupons](batch_number*, reward, validity_period);
+[Employees](eid*, name, monthly_salary);
+[Complains](complain_id*, details, status);
+
+<makes>();
+Products ==> makes;
+Manufacturers --- makes;
+
+[<sells>](quantity, price);
+Shops --- sells;
+Products --- sells;
+
+<belongsTo>();
+Products ==> belongsTo;
+Category --- belongsTo;
+
+<parentCategory>();
+Category --> parentCategory[child];
+Category --- parentCategory[parent];
+
+[<orders>](oid*, hasCoupon, status, delivery_date, shipping_cost, address, total_cost, quantity);
+sells --- orders;
+Users --- orders;
+
+<reviews>(ratings, comment);
+Users --- reviews;
+orders --> reviews;
+
+[<rewarded>]();
+Users --- rewarded;
+Coupons --- rewarded;
+
+<applied>();
+orders --> applied;
+rewarded --> applied;
+
+<refunds>(quantity, date, status, reason);
+Employees --- refunds;
+orders --- refunds;
+
+<files_complain>();
+Employees --- files_complain;
+Complains ==> files_complain;
+Users --- files_complain;
+
+[order_complain](oid);
+[shop_complain](sid);
+[user_complain](uid);
+
+Complains ==> {order_complain, shop_complain, user_complain};
