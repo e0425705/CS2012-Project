@@ -5,7 +5,7 @@
 [Users](uid*, name, address);
 [Coupons](batch_number*, reward, validity_period);
 [Employees](eid*, name, monthly_salary);
-[Complains](complain_id*, details, status);
+[Complaints](complain_id*, details, status);
 
 <makes>();
 Products ==> makes;
@@ -43,13 +43,13 @@ rewarded --> applied;
 Employees --- refunds;
 orders --- refunds;
 
-<files_complain>();
-Employees --- files_complain;
-Complains ==> files_complain;
-Users --- files_complain;
+<files_complaint>();
+Employees --- files_complaint;
+Complaints ==> files_complaint;
+Users --- files_complaint;
 
-[order_complain](oid);
-[shop_complain](sid);
-[user_complain](uid);
+[order_complaint](oid);
+[shop_complaint](sid);
+[user_complaint](uid);
 
-Complains ==> {order_complain, shop_complain, user_complain};
+Complaints ==> {order_complaint, shop_complaint, user_complaint};
