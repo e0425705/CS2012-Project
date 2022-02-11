@@ -1,0 +1,109 @@
+digraph ERD {
+  newrank=true;
+  overlap=false;
+  compound=true;
+
+  node [shape=ellipse]; Shops_sid[label=<<u>sid</u>>]; Shops_name[label="name"]; 
+  node [shape=box]; Shops;
+  Shops -> Shops_sid [dir=none];
+  Shops -> Shops_name [dir=none];
+
+  node [shape=ellipse]; sells_price[label="price"]; sells_quantity[label="quantity"]; 
+  node [shape=diamond]; sells;
+  sells_price -> sells [dir=none];
+  sells_quantity -> sells [dir=none];
+
+  sells -> Shops [  dir=none label=""]
+  node [shape=ellipse]; Products_pid[label=<<u>pid</u>>]; Products_name[label="name"]; Products_description[label="description"]; 
+  node [shape=box]; Products;
+  Products_pid -> Products [dir=none];
+  Products_name -> Products [dir=none];
+  Products_description -> Products [dir=none];
+
+  sells -> Products [  dir=none label=""]
+  node [shape=ellipse]; 
+  node [shape=diamond]; makes;
+
+  Products -> makes [  dir=forward label=""]
+  node [shape=ellipse]; Manufacturers_mid[label=<<u>mid</u>>]; Manufacturers_name[label="name"]; Manufacturers_country[label="country"]; 
+  node [shape=box]; Manufacturers;
+  Manufacturers -> Manufacturers_mid [dir=none];
+  Manufacturers -> Manufacturers_name [dir=none];
+  Manufacturers -> Manufacturers_country [dir=none];
+
+  makes -> Manufacturers [  dir=none label=""]
+  node [shape=ellipse]; Category_cid[label=<<u>cid</u>>]; Category_name[label="name"]; 
+  node [shape=box]; Category;
+  Category_cid -> Category [dir=none];
+  Category_name -> Category [dir=none];
+
+  node [shape=ellipse]; 
+  node [shape=diamond]; parentCategory;
+
+  parentCategory -> Category [  dir=none label="parent"]
+  Category -> parentCategory [  dir=forward label="child"]
+  node [shape=ellipse]; 
+  node [shape=diamond]; belongsTo;
+
+  belongsTo -> Products [  dir=back label=""]
+  Category -> belongsTo [  dir=none label=""]
+  node [shape=ellipse]; Users_uid[label=<<u>uid</u>>]; Users_name[label="name"]; Users_address[label="address"]; 
+  node [shape=box]; Users;
+  Users -> Users_uid [dir=none];
+  Users -> Users_name [dir=none];
+  Users -> Users_address [dir=none];
+
+  node [shape=ellipse]; orders_oid[label=<<u>oid</u>>]; orders_shipping_cost[label="shipping_cost"]; orders_address[label="address"]; orders_total_cost[label="total_cost"]; orders_hasCoupon[label="hasCoupon"]; orders_status[label="status"]; orders_estimated_delivery[label="estimated_delivery"]; 
+  node [shape=diamond]; orders;
+  orders_oid -> orders [dir=none];
+  orders_shipping_cost -> orders [dir=none];
+  orders_address -> orders [dir=none];
+  orders_total_cost -> orders [dir=none];
+  orders_hasCoupon -> orders [dir=none];
+  orders_status -> orders [dir=none];
+  orders_estimated_delivery -> orders [dir=none];
+
+  Users -> orders [  dir=none label=""]
+  orders -> sells [  arrowhead=box dir=forward label=""]
+  node [shape=ellipse]; refunds_num_instances[label="num_instances"]; refunds_date[label="date"]; refunds_status[label="status"]; refunds_reason[label="reason"]; 
+  node [shape=diamond]; refunds;
+  refunds_num_instances -> refunds [dir=none];
+  refunds_date -> refunds [dir=none];
+  refunds_status -> refunds [dir=none];
+  refunds_reason -> refunds [dir=none];
+
+  refunds -> orders [  arrowhead=box dir=forward label=""]
+  node [shape=ellipse]; Employees_eid[label=<<u>eid</u>>]; Employees_name[label="name"]; Employees_monthly_salary[label="monthly_salary"]; 
+  node [shape=box]; Employees;
+  Employees -> Employees_eid [dir=none];
+  Employees -> Employees_name [dir=none];
+  Employees -> Employees_monthly_salary [dir=none];
+
+  Employees -> refunds [  dir=none label=""]
+  node [shape=ellipse]; reviews_ratings[label="ratings"]; reviews_comment[label="comment"]; 
+  node [shape=diamond]; reviews;
+  reviews_ratings -> reviews [dir=none];
+  reviews_comment -> reviews [dir=none];
+
+  reviews -> Users [  dir=none label=""]
+  reviews -> orders [  arrowhead=box dir=forward label=""]
+  node [shape=ellipse]; 
+  node [shape=diamond]; applies;
+
+  orders -> applies [  arrowhead=normal arrowtail=box dir=both label=""]
+  node [shape=ellipse]; Coupons_batch_number[label=<<u>batch_number</u>>]; Coupons_reward[label="reward"]; Coupons_validity_period[label="validity_period"]; 
+  node [shape=box]; Coupons;
+  Coupons_batch_number -> Coupons [dir=none];
+  Coupons_reward -> Coupons [dir=none];
+  Coupons_validity_period -> Coupons [dir=none];
+
+  Coupons -> applies [  dir=forward label=""]
+  node [shape=ellipse]; 
+  node [shape=diamond]; files;
+
+  Users -> files [  dir=none label=""]
+  files -> orders [  arrowhead=box dir=forward label=""]
+  files -> Shops [  dir=none label=""]
+  Users -> files [  dir=none label="target"]
+  files -> Employees [  dir=none label=""]
+}
