@@ -24,7 +24,7 @@ Category --- belongsTo;
 Category --> parentCategory[child];
 Category --- parentCategory[parent];
 
-[<orders>](oid*, hasCoupon, status, delivery_date, shipping_cost, address, total_cost, quantity, ratings);
+[<orders>](oid*, hasCoupon, status, delivery_date, shipping_cost, address, total_cost, final_cost, quantity, ratings);
 sells --- orders;
 Users --- orders;
 
