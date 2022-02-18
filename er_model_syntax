@@ -63,13 +63,24 @@ Comments --- relates_to_comment;
 
 Complaints ==> {order_complaint, shop_complaint, comment_complaint};
 
+[Order_Review]();
+[Replies]();
+
 <review>();
 orders --> review;
-Comments --> review;
+Order_Review ==> review;
 
-<replies>();
-Comments --- replies [parentComment];
-Comments --- replies [childrenComment];
+<replies_to>();
+Replies ==> replies_to;
+Comments --- replies_to [parentComment];
+Users --- replies_to;
+
+Comments ==> {Order_Review, Replies};
+
+
+
+
+
 
 
 
