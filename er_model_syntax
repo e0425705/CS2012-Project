@@ -36,7 +36,7 @@ Coupons --- rewarded;
 orders --> applied;
 rewarded --> applied;
 
-<refunds>(quantity, date, status, reason);
+<refunds>(refund_id*, quantity, date, status, reason);
 Employees --- refunds;
 orders --- refunds;
 
@@ -70,3 +70,6 @@ Comments --> review;
 <replies>();
 Comments --- replies [parentComment];
 Comments --- replies [childrenComment];
+
+
+
