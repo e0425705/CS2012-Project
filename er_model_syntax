@@ -6,7 +6,7 @@
 [Coupons](batch_number*, reward, validity_period);
 [Employees](eid*, name, monthly_salary);
 [Complaints](complain_id*, details, status);
-[Comments](commend_id*, message);
+[Comments](comment_id*, message);
 
 <makes>();
 Products ==> makes;
