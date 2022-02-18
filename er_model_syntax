@@ -36,7 +36,7 @@ Coupons --- rewarded;
 orders --> applied;
 rewarded --> applied;
 
-<refunds>(refund_id*, quantity, date, status, reason);
+<refunds>(refund_id*, quantity, refund_date, status, reason);
 Employees --- refunds;
 orders --- refunds;
 
@@ -63,6 +63,10 @@ Comments --- relates_to_comment;
 
 Complaints ==> {order_complaint, shop_complaint, comment_complaint};
 
+<make_comments>();
+Comments ==> make_comments;
+Users --- make_comments;
+
 [Order_Review]();
 [Replies]();
 
@@ -73,14 +77,5 @@ Order_Review ==> review;
 <replies_to>();
 Replies ==> replies_to;
 Comments --- replies_to [parentComment];
-Users --- replies_to;
 
 Comments ==> {Order_Review, Replies};
-
-
-
-
-
-
-
-
