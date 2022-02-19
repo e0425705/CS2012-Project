@@ -3,7 +3,7 @@
 [Manufacturers](mid*, name, country);
 [Category](cid*, name);
 [Users](uid*, name, address);
-[Coupons](batch_number*, reward, validity_period);
+[Coupons](batch_number*, reward, minimum_spend, validity_period);
 [Employees](eid*, name, monthly_salary);
 [Complaints](complain_id*, details, status);
 [Comments](comment_id*, message);
